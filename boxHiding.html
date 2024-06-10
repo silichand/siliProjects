@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hide The Box</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        body {
+            background-color:rgb(29, 29, 28);
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .container {
+            background-color: blueviolet;
+            display: flex;
+            flex-wrap: wrap;
+            padding: 20px;
+            gap: 10px;
+            border-radius: 5px;
+        }
+
+        .box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 5px;
+            height: 4rem;
+            width: 4rem;
+            background-color: blanchedalmond;
+            color: black;
+            font-size: medium;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        #Reset {
+            background-color: black;
+            color: blanchedalmond;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box" id="Sili">Sili</div>
+        <div class="box" id="Kailash">Kailash</div>
+        <div class="box" id="Abhi">Abhi</div>
+        <div class="box" id="Sandip">Sandip</div>
+        <div class="box" id="Reset">Reset</div>
+        <div class="box"><a href="boxHiding.html">Home</a></div>
+    </div>
+</body>
+
+<script>
+    let Sili = document.getElementById('Sili');
+    Sili.addEventListener('click' , (e) => {
+        Sili.style.display = 'none'
+    })
+    let Kailash = document.getElementById('Kailash');
+    Kailash.addEventListener('click', (e) => {
+        Kailash.style.display = 'none'
+    })
+    let Sandip = document.getElementById('Sandip');
+    Sandip.addEventListener('click', (e) => {
+        Sandip.style.display = 'none'
+    })
+    let Abhi = document.getElementById('Abhi');
+    Abhi.addEventListener('click', (e) => {
+        Abhi.style.display = 'none'
+    })
+    let reset = document.getElementById('Reset');
+    Reset.addEventListener('click', (e) => {
+        document.getElementById('Sili').style.display = 'flex'
+        document.getElementById('Kailash').style.display = 'flex'
+        document.getElementById('Abhi').style.display = 'flex'
+        document.getElementById('Sandip').style.display = 'flex'
+
+    })
+</script>
+</html>

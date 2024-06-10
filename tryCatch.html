@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>try..catch</title>
+</head>
+
+<body>
+    <p>sili</p>
+    <script>
+        try {
+            throw "Oops; this is not an Error object";
+        } catch (e) {
+            if (!(e instanceof Error)) {
+                e = new Error(e);
+            }
+            console.error(e.message);
+        }
+
+    </script>
+</body>
+
+</html>

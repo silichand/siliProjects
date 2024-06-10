@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Jokes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            width: 100vw;
+            background-color: rgb(2, 39, 35);
+            color: white;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            padding: 2rem;
+            margin: 2rem;
+            background-color: rgb(27, 68, 74);
+            border-radius: 5px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .imoji {
+            font-size: 40px;
+        }
+
+        #joke {
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+        }
+
+        #btn {
+            background-color: rgb(0, 10, 8);
+            color: white;
+            font-size: 1rem;
+            border: none;
+            border-radius: 10px;
+            padding: 0.5rem;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        #btn:active {
+            background-color: rgb(75, 75, 75);
+        }
+
+        #btn:hover {
+            cursor: pointer;
+        }
+
+        #btn:disabled {
+            background-color: gray;
+            cursor: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <span class="imoji">&#128518;</span>
+        <p id="joke"></p>
+        <button id="btn">One more Joke &#x1F449;</button>
+        <div id="timer"></div>
+    </div>
+</body>
+
+<script>
+    let jokePara = document.querySelector('#joke');
+    let btn = document.getElementById('btn');
+    let timer = document.getElementById('timer');
+    let value_timer = 10;
+    let disable = false;
+
+
+    const url = 'https://v2.jokeapi.dev/joke/Any';
+
+    async function getJokes(url) {
+        try {
+            let responce = await fetch(url);
+            let data = await responce.json();
+
+            if (data.joke != undefined) {
+                jokePara.innerText = `${data.joke}`;
+            } else {
+                jokePara.innerHTML = 'joke loading failed';
+            }
+        } catch (error) {
+            console.log('some error occured');
+        }
+    }
+
+    getJokes(url);
+
+    function startTimer() {
+        var interval = setInterval(function () {
+            value_timer--;
+            if (value_timer < 0) {
+                clearInterval(interval);
+                timer.textContent = "Time's up!";
+            } else {
+                timer.textContent = value_timer;
+            }
+        }, 1000);
+    }
+
+    if (disable == false) {
+        btn.addEventListener('click', () => {
+            getJokes(url);
+            disable = true;
+            btn.disabled = true;
+            timer.innerText = value_timer;
+            startTimer();
+            setTimeout(() => {
+                disable = false;
+                btn.disabled = false;
+            }, 10000);
+        });
+    }
+
+</script>
+
+</html>

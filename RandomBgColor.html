@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Color Changer</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        body {
+            background-color: rgb(32, 32, 32);
+            color: white;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            display:flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+            gap: 10px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2 );
+            /* background-color: rgb(32, 32, 32); */
+            backdrop-filter: blur(16px);
+            font-size:large;
+            letter-spacing: 2px;
+        }
+
+        .box {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: 0;
+            border-radius: 5px;
+            background-color: white;
+            box-shadow:  0px 0px 10px rgba(0, 0, 0, 0.227);
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+
+
+<body>
+    <div class="container">
+        <div>Random Background Color</div>
+        <div class="box">
+            <button id="start">Start</button>
+            <button id="stop">Stop</button>
+            <button id="random">Random</button>
+            <button id="back"><a href="index.html">Back</a></button>
+        </div>
+    </div>
+</body>
+
+<script>
+
+    //random color generation
+
+    const randomColor = function() {
+        const hex = "0123456789ABCDEF";
+        let color = "#";
+        for (let i = 0; i < 6; i++) {
+            color += hex[Math.floor(Math.random() * 16)]
+        }
+        return color;
+    }
+
+    const body = document.querySelector('body');
+    //random color change by clicking on random button
+
+    document.getElementById('random').addEventListener ('click' , function() {
+        body.style.backgroundColor = randomColor();
+        body.style.color = 'white';
+        //console.log(randomColor());
+        clearInterval(start);
+    })
+
+    const colorChange = function() {
+        body.style.backgroundColor = randomColor();
+        body.style.color = "white";
+    }
+
+    let start;
+    document.getElementById('start').addEventListener ('click' , () => {
+        start = setInterval(colorChange, 1000)
+    })
+
+    document.getElementById('stop').addEventListener ('click' , () => {
+        clearInterval(start);
+    })
+</script>
+</html>
